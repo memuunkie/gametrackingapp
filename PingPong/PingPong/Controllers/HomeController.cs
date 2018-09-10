@@ -25,9 +25,9 @@ namespace PingPong.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Players()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Players!";
             var players = Player.Get();
             var model = new PlayerViewModel {Players = players};
 
