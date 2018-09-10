@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web.Mvc;
 using Dapper;
 using PingPong.Models;
+using PingPong.ViewModel;
 
 namespace PingPong.Controllers
 {
     public class HomeController : Controller
     {
         readonly SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["PingPong"].ConnectionString);
+        // creates connection to database
         public ActionResult Index()
         {
             return View();
@@ -26,10 +28,10 @@ namespace PingPong.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-            var players = new List<Player>();
-            players = _conn.Query<Player>("SELECT * FROM Players").ToList();
+            var players = Player.Get();
+            var model = new PlayerViewModel {Players = players};
 
-            return View();
+            return View(model);
         }
     }
 }
