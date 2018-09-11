@@ -27,12 +27,8 @@ namespace PingPong.Controllers
 
         public ActionResult Players()
         {
-            return RedirectToAction("Players", "Players");
-            //ViewBag.Message = "Players!";
-            //var players = Player.Get();
-            //var model = new PlayerViewModel {Players = players};
+            return RedirectToAction("Index", "Players");
 
-            //return View(model);
         }
     }
 }

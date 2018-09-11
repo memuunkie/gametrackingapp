@@ -19,7 +19,11 @@ namespace PingPong.Controllers
         // GET: Players
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Message = "Players!";
+            var players = Player.Get();
+            var model = new PlayerViewModel { Players = players };
+
+            return View(model);
         }
 
         // GET: Players/Details/5
@@ -94,13 +98,14 @@ namespace PingPong.Controllers
             }
         }
 
-        public ActionResult Players()
-        {
-            ViewBag.Message = "Players!";
-            var players = Player.Get();
-            var model = new PlayerViewModel { Players = players };
+        //KEEP UNTIL PROVEN UNNECESSARY
+        //public ActionResult Players()
+        //{
+        //    ViewBag.Message = "Players!";
+        //    var players = Player.Get();
+        //    var model = new PlayerViewModel { Players = players };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }
