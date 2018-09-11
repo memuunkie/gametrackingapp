@@ -197,9 +197,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Players.cshtml" />
+    <Content Include="Views\Players\Players.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Players\Create.cshtml" />
+    <Content Include="Views\Players\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
