@@ -6,11 +6,45 @@
 <h2>@ViewBag.Title - I am your Title</h2>
 <h3>@ViewBag.Message</h3>
 
+@*<p> I may want this later
+    @Html.ActionLink("Create New", "Create")
+</p>*@
 
 
-<ul>
+<table class="table">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Highest Score
+        </th>
+        <th>
+            Lowest Score
+        </th>
+        <th></th>
+    </tr>
+    
     @foreach (var player in Model.Players)
     {
-        <li>@player.FirstName</li>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => player.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => player.LastName)</td>
+        </tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = player.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = player.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = player.Id })
+        </td>
     }
-</ul>
+</table>
+    @*<ul>
+        @foreach (var player in Model.Players)
+        {
+            <li>@player.FirstName</li>
+        }
+    </ul>*@
+

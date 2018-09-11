@@ -6,6 +6,53 @@
 <h2>@ViewBag.Title - I am your Title</h2>
 <h3>@ViewBag.Message</h3>
 
+@*<p> I may want this later
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
+<table class="table">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Highest Score
+        </th>
+        <th>
+            Lowest Score
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var player in Model.Players)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => player.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => player.LastName)</td>
+            <td></td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = player.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = player.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = player.Id })
+            </td>
+        </tr>
+
+    }
+</table>
+
+@*@model PingPong.ViewModel.PlayerViewModel
+
+@{
+    ViewBag.Title = "Players";
+}
+<h2>@ViewBag.Title - I am your Title</h2>
+<h3>@ViewBag.Message</h3>
+
 
 
 <ul>
@@ -13,4 +60,4 @@
     {
         <li>@player.FirstName</li>
     }
-</ul>
+</ul>*@
