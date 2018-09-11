@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using PingPong.Models;
 using Dapper;
+using PingPong.ViewModel;
 
 namespace PingPong.Controllers
 {
@@ -91,6 +92,15 @@ namespace PingPong.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Players()
+        {
+            ViewBag.Message = "Players!";
+            var players = Player.Get();
+            var model = new PlayerViewModel { Players = players };
+
+            return View(model);
         }
     }
 }
