@@ -42,17 +42,10 @@ namespace PingPong.Controllers
             //var bornToday = DateTime.Now;
             using (_conn)
             {
-                var affectedRows = _conn.Execute(@"INSERT INTO Players (FirstName,LastName,CreationDate) 
-                                VALUES (@FirstName, @LastName, @CreationDate);", 
-                                new
-                                {
-                                    FirstName = player.FirstName,
-                                    LastName = player.LastName,
-                                    CreationDate = player.CreationDate,
-                                });
-                Console.WriteLine(affectedRows);
+                _conn.Execute(@"INSERT INTO Players (FirstName,LastName,CreationDate) 
+                                VALUES (@FirstName, @LastName, @CreationDate);", player);
             }
-            return View();
+            return View(player);
         }
 
 

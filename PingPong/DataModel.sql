@@ -11,7 +11,7 @@ CREATE TABLE Teams (
     Id int not null primary key identity(1,1),
 	Player1Id int not null foreign key references Players(Id),
 	Player2Id int not null foreign key references Players(Id),
-	TeamName varchar(255) not null,
+	TeamName varchar(255) unique not null,
 	CreationDate datetime not null,
 
 	constraint TeamPlayers_Unique check (

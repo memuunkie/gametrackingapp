@@ -20,6 +20,7 @@ namespace PingPong.Models
 
         public DateTime CreationDate { get; set; }
 
+        // set the CreationDate to now
         public Player()
         {
             this.CreationDate = DateTime.Now;
