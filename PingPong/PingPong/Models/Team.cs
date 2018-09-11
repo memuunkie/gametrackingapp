@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -22,6 +23,11 @@ namespace PingPong.Models
         public Team()
         {
             this.CreationDate = DateTime.Now;
+        }
+
+        public static List<Team> Get()
+        {
+            return _conn.Query<Team>("SELECT * FROM Teams").ToList();
         }
     }
 }
