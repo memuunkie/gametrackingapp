@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using PingPong.Models;
 using Dapper;
 using PingPong.ViewModel;
+using System.Net;
 
 namespace PingPong.Controllers
 {
@@ -27,9 +28,20 @@ namespace PingPong.Controllers
         }
 
         // GET: Players/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            string sql = "SELECT * FROM Players WHERE Id='" + id + "'";
+
+            using (_conn)
+            {
+                var playerDetails = _conn.QuerySingle(sql);
+                return View(playerDetails);
+            }
         }
 
         // GET: Players/Create
