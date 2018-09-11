@@ -12,10 +12,18 @@ namespace PingPong.Models
     {
         // optional - can refactor into separate Database class for easy reference
         public static SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["PingPong"].ConnectionString);
+
         // creates connection to database
         public int Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+
+        public DateTime CreationDate { get; set; }
+
+        public Player()
+        {
+            this.CreationDate = DateTime.Now;
+        }
 
         public static List<Player> Get()
         {
