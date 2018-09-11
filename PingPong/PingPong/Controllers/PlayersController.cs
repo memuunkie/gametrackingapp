@@ -44,8 +44,8 @@ namespace PingPong.Controllers
             {
                 _conn.Execute(@"INSERT INTO Players (FirstName,LastName,CreationDate) 
                                 VALUES (@FirstName, @LastName, @CreationDate);", player);
+                return RedirectToAction("Index", "Home");
             }
-            return View(player);
         }
 
 
