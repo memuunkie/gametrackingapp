@@ -22,9 +22,10 @@ namespace PingPong.Controllers
         {
             ViewBag.Message = "Players!";
             var players = Player.Get();
-            var model = new PlayerViewModel { Players = players };
+            //var games = Player.GetSingleGames();
+            //var model = new PlayerViewModel { Players = players, SingleGames = games};
 
-            return View(model);
+            return View();
         }
 
         // GET: Players/Details/5
@@ -39,8 +40,10 @@ namespace PingPong.Controllers
 
             using (_conn)
             {
-                var playerDetails = _conn.QuerySingle(sql);
-                return View(playerDetails);
+
+                var player = _conn.QuerySingle<Player>(sql);
+
+                return View(player);
             }
         }
 

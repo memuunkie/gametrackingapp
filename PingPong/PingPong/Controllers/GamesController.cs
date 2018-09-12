@@ -36,6 +36,8 @@ namespace PingPong.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+
+            // ASK : can do a check if single or team game chosen? - Yes can
             try
             {
                 // TODO: Add insert logic here
