@@ -22,6 +22,9 @@ namespace PingPong.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            var games = TeamGame.GetGamesByTeamIds();
+
+
             return View();
         }
 
