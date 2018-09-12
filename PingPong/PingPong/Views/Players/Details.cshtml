@@ -1,17 +1,18 @@
-﻿@model PingPong.ViewModel.PlayerViewModel
+﻿@*@model PingPong.ViewModel.PlayerViewModel*@
+@model PingPong.Models.Player
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Player Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h2>Player Details</h2>
+<hr />
 <div>
-    <h4>PlayerViewModel</h4>
+    <h4>@Model.FirstName @Model.LastName</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-    </dl>
+    <dl class="dl-horizontal"></dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
