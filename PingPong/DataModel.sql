@@ -13,9 +13,9 @@ ADD CONSTRAINT [PK_Players] PRIMARY KEY (Id)
 CREATE TABLE Teams (
     Id int not null identity(1,1),
 	TeamName nvarchar(100) not null,
-	CreationDate datetime not null,
 	Player1Id int not null,
 	Player2Id int not null,
+	CreationDate datetime not null,
 
 	constraint TeamPlayers_Unique check (
 		Player1Id <> Player2Id
@@ -38,8 +38,8 @@ CREATE TABLE SingleGames (
 	Id int not null identity(1,1),
 	Player1Id int not null,
 	Player2Id int not null,
-	Player1Score int not null,
-	Player2Score int not null,
+	Player1Score int,
+	Player2Score int,
 	CreationDate datetime not null,
 
 	constraint SinglePlayers_Unique check (
@@ -60,8 +60,8 @@ CREATE TABLE TeamGames (
 	Id int not null identity(1,1),
 	Team1Id int not null,
 	Team2Id int not null,
-	Team1Score int not null,
-	Team2Score int not null,
+	Team1Score int,
+	Team2Score int,
 	CreationDate datetime not null,
 
 	constraint Teams_Unique check (
