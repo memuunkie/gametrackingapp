@@ -33,7 +33,7 @@ namespace PingPong.Models
             return _conn.Query<TeamGame>("SELECT * FROM TeamGames").ToList();
         }
 
-        public static List<TeamGame> GetGamesbyTeamIds(int[] teamIds)
+        public static List<TeamGame> GetGamesByTeamIds(int[] teamIds)
         {
             // pass in ids to find
             // add Classes to "bind" results to

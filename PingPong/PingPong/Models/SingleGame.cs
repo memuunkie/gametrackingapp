@@ -29,5 +29,10 @@ namespace PingPong.Models
         {
             return _conn.Query<SingleGame>("SELECT * FROM SingleGames").ToList();
         }
+
+        public static List<SingleGame> GetGamesByPlayerId(int playerId)
+        {
+            return _conn.Query<SingleGame>("SELECT * FROM SingleGames WHERE Player1Id=@playerId", playerId).ToList();
+        }
     }
 }
