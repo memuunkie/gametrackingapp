@@ -1,0 +1,30 @@
+INSERT INTO Teams VALUES ('XForce', 1, 2, GETDATE());
+INSERT INTO Teams VALUES ('Avengers', 3, 4, GETDATE());
+
+INSERT INTO SingleGames VALUES (1, 2, 5, 3, GETDATE());
+INSERT INTO SingleGames VALUES (2, 3, 4, 6, GETDATE());
+INSERT INTO SingleGames VALUES (3, 4, 5, 7, GETDATE());
+INSERT INTO SingleGames VALUES (4, 1, 5, 5, GETDATE());
+INSERT INTO SingleGames VALUES (1, 3, 4, 8, GETDATE());
+INSERT INTO SingleGames VALUES (2, 4, 3, 6, GETDATE());
+
+INSERT INTO TeamGames VALUES (1, 2, 10, 11, GETDATE());
+INSERT INTO TeamGames VALUES (1, 2, 15, 13, GETDATE());
+INSERT INTO TeamGames VALUES (1, 2, 14, 10, GETDATE());
+INSERT INTO TeamGames VALUES (2, 1, 10, 16, GETDATE());
+INSERT INTO TeamGames VALUES (2, 1, 16, 12, GETDATE());
+INSERT INTO TeamGames VALUES (2, 1, 14, 11, GETDATE());
+
+
+SELECT * FROM Players;
+
+SELECT * FROM Teams;
+
+SELECT * FROM SingleGames;
+
+SELECT * FROM TeamGames;
+
+DROP TABLE SingleGames;
+DROP TABLE TeamGames;
+DROP TABLE Teams;
+DROP TABLE Players;
