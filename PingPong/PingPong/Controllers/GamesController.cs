@@ -14,6 +14,9 @@ namespace PingPong.Controllers
 {
     public class GamesController : Controller
     {
+        readonly SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["PingPong"].ConnectionString);
+        // creates connection to database
+
         // GET: Games
         public ActionResult Index()
         {
@@ -34,20 +37,17 @@ namespace PingPong.Controllers
 
         // POST: Games/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Player1Id,Player2Id,Player1Score,Player2Score")] SingleGame singleGame)
         {
 
-            // ASK : can do a check if single or team game chosen? - Yes can
-            try
+            using (_conn)
             {
-                // TODO: Add insert logic here
+                _conn.Execute(@"INSERT INTO SingleGames (Player1Id,Player2Id,Player1Score,Player2Score,CreationDate) 
+                                VALUES (@Player1Id, @Player2Id, @Player1Score, @Player2Score, @CreationDate);", singleGame);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Games");
         }
 
         // GET: Games/Edit/5
