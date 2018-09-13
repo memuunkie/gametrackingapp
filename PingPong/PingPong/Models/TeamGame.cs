@@ -13,8 +13,8 @@ namespace PingPong.Models
         public static SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["PingPong"].ConnectionString);
 
         public int Id { get; set; }
-        public Team Team1 { get; set; }
         // this is "binding" the teams to the Team class using their "ids" (thru Dapper magic)
+        public Team Team1 { get; set; }
         public Team Team2 { get; set; }
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
@@ -29,16 +29,16 @@ namespace PingPong.Models
         public static List<TeamGame> Get()
         {
             // a list of all TeamGames records
-
             return _conn.Query<TeamGame>("SELECT * FROM TeamGames").ToList();
         }
 
-        public static List<TeamGame> GetGamesByTeamIds(int[] teamIds)
+        public static List<TeamGame> GetGamesByTeamIds()
         {
+            var teamIds = new[] {1, 2, 3};
+
             // pass in ids to find
             // add Classes to "bind" results to
             // <FirstTable-tg, SecondTableJoin-t1, ThirdTableJoin-t2, FinalObjectReturned>
-
             var games = _conn.Query<TeamGame, Team, Team, TeamGame>(@"SELECT tg.*, t1.*, t2.*
                             FROM TeamGames tg
                             INNER JOIN Teams t1 ON t1.Id = tg.Team1Id
@@ -51,10 +51,15 @@ namespace PingPong.Models
                     tg.Team2 = t2;
                     return tg;
                 }, new {teamIds}).ToList();
-                    // don't forget to pass in the parameter and then List the result
+            // don't forget to pass in the parameter and then List the result
+
+            var testCase = games[0].Team1.TeamName;
 
             return games;
         }
+
+            // teamid in @teamsids
+
 
     }
 }
