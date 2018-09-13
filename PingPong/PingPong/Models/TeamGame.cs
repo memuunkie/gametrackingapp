@@ -16,6 +16,7 @@ namespace PingPong.Models
         // this is "binding" the teams to the Team class using their "ids" (thru Dapper magic)
         public Team Team1 { get; set; }
         public Team Team2 { get; set; }
+        public string TeamWinner { get; set; }
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
         public DateTime CreationDate { get; set; }
@@ -29,7 +30,32 @@ namespace PingPong.Models
         public static List<TeamGame> Get()
         {
             // a list of all TeamGames records
-            return _conn.Query<TeamGame>("SELECT * FROM TeamGames").ToList();
+            var games = _conn.Query<TeamGame, Team, Team, TeamGame>(@"SELECT tg.*, t1.*, t2.*
+                            FROM TeamGames tg
+                            INNER JOIN Teams t1 ON t1.Id = tg.Team1Id
+                            INNER JOIN Teams t2 ON t2.Id = tg.Team2Id;",
+                            (tg, t1, t2) =>
+                            {
+                                // bind the table/class hybrid to the property
+                                tg.Team1 = t1;
+                                tg.Team2 = t2;
+                                return tg;
+                            }).ToList();
+
+            for (int i = 0; i < games.Count; i++)
+            {
+                if (games[i].Team1Score > games[i].Team2Score)
+                {
+                    games[i].TeamWinner = games[i].Team1.TeamName;
+                }
+                else
+                {
+                    games[i].TeamWinner = games[i].Team2.TeamName;
+                }
+            }
+
+            return games;
+
         }
 
         public static List<TeamGame> GetGamesByTeamIds()

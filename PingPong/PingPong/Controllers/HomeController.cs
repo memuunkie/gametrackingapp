@@ -22,7 +22,12 @@ namespace PingPong.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            var games = TeamGame.GetGamesByTeamIds();
+            //var games = TeamGame.GetGamesByTeamIds();
+
+            var gameWinners = TeamGame.Get();
+
+            var singleGames = SingleGame.GetGamesByPlayerId(1);
+
 
 
             return View();
