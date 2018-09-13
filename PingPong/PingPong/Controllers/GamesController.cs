@@ -20,7 +20,11 @@ namespace PingPong.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Message = "Single Games!";
+            var games = SingleGame.GetGamesByPlayerId(1);
+            var model = new GameViewModel { SingleGames = games };
+
+            return View(model);
         }
 
         // GET: Games/Details/5
