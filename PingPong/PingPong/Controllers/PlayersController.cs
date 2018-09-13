@@ -37,13 +37,16 @@ namespace PingPong.Controllers
 
             string sql = "SELECT * FROM Players WHERE Id='" + id + "'";
 
+            var player = new Player();
+
             using (_conn)
             {
 
-                var player = _conn.QuerySingle<Player>(sql);
-
-                return View(player);
+                player = _conn.QuerySingle<Player>(sql);
             }
+
+            return View(player);
+
         }
 
         // GET: Players/Create
@@ -58,13 +61,13 @@ namespace PingPong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FirstName,LastName")] Player player)
         {
-            //var bornToday = DateTime.Now;
             using (_conn)
             {
                 _conn.Execute(@"INSERT INTO Players (FirstName,LastName,CreationDate) 
                                 VALUES (@FirstName, @LastName, @CreationDate);", player);
-                return RedirectToAction("Index", "Players");
             }
+
+            return RedirectToAction("Index", "Players");
         }
 
 
