@@ -6,9 +6,9 @@
 <h2>@ViewBag.Title - I am your Title</h2>
 <h3>@ViewBag.Message</h3>
 
-@*<p> I may want this later
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+<p>
+    @Html.ActionLink("Create New Player", "Create")
+</p>
 
 
 <table class="table">
@@ -47,17 +47,17 @@
 
 @*@model PingPong.ViewModel.PlayerViewModel
 
-@{
-    ViewBag.Title = "Players";
-}
-<h2>@ViewBag.Title - I am your Title</h2>
-<h3>@ViewBag.Message</h3>
-
-
-
-<ul>
-    @foreach (var player in Model.Players)
-    {
-        <li>@player.FirstName</li>
+    @{
+        ViewBag.Title = "Players";
     }
-</ul>*@
+    <h2>@ViewBag.Title - I am your Title</h2>
+    <h3>@ViewBag.Message</h3>
+
+
+
+    <ul>
+        @foreach (var player in Model.Players)
+        {
+            <li>@player.FirstName</li>
+        }
+    </ul>*@

@@ -22,10 +22,9 @@ namespace PingPong.Controllers
         {
             ViewBag.Message = "Players!";
             var players = Player.Get();
-            //var games = Player.GetSingleGames();
-            //var model = new PlayerViewModel { Players = players, SingleGames = games};
+            var model = new PlayerViewModel { Players = players };
 
-            return View();
+            return View(model);
         }
 
         // GET: Players/Details/5
@@ -64,7 +63,7 @@ namespace PingPong.Controllers
             {
                 _conn.Execute(@"INSERT INTO Players (FirstName,LastName,CreationDate) 
                                 VALUES (@FirstName, @LastName, @CreationDate);", player);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Players");
             }
         }
 
