@@ -21,8 +21,9 @@ namespace PingPong.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Single Games!";
-            var games = SingleGame.GetGamesByPlayerId(1);
-            var model = new GameViewModel { SingleGames = games };
+            var games = SingleGame.Get();
+            var teamGames = TeamGame.Get();
+            var model = new GameViewModel { SingleGames = games, TeamGames = teamGames};
 
             return View(model);
         }
