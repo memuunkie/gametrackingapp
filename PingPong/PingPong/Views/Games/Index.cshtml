@@ -1,0 +1,50 @@
+﻿@model PingPong.ViewModel.GameViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>
+    @Html.ActionLink("Create New Game", "Create")
+</p>
+
+<p>I am the Games Index</p>
+<p>You got here cuz you created a game.</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Winner
+        </th>
+        <th>
+            Player 1 Score
+        </th>
+        <th>
+            Player 2 Score
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var game in Model.SingleGames)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => game.PlayerWinner)</td>
+            <td>@Html.DisplayFor(modelItem => game.Player1Score)</td>
+            <td>@Html.DisplayFor(modelItem => game.Player2Score)</td>
+            <td></td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = game.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = game.Id}) |
+                @Html.ActionLink("Delete", "Delete", new { id = game.Id })
+            </td>
+        </tr>
+
+    }
+</table>
+
