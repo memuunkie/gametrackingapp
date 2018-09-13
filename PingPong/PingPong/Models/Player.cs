@@ -17,7 +17,7 @@ namespace PingPong.Models
         public int Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-
+        public string TeamName { get; set; }
         public DateTime CreationDate { get; set; }
 
         // set the CreationDate to now
@@ -30,5 +30,12 @@ namespace PingPong.Models
         {
             return _conn.Query<Player>("SELECT * FROM Players").ToList();
         }
+
+        //public static List<Team>
+
+
+
+        // On player class
+        // query on all teams player is on       
     }
 }
