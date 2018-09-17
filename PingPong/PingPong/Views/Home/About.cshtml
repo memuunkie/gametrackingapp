@@ -1,7 +1,18 @@
-﻿@{
+﻿@using PingPong.Models
+@*@model PingPong.Models.TeamGame*@
+@model PingPong.ViewModel.GameViewModel
+
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<ul>
+    @foreach (var team in Model.TeamGames)
+    {
+        <li>@Html.DisplayFor(modelItem => team.TeamWinner)</li>
+    }
+</ul>
