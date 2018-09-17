@@ -16,8 +16,7 @@ namespace PingPong.Models
         // this is "binding" the teams to the Team class using their "ids" (thru Dapper magic)
         public Team Team1 { get; set; }
         public Team Team2 { get; set; }
-        public string TeamWinner { get; set; }
-        public string GetTeamWinnerName() => Team1Score > Team2Score ? Team1.TeamName : Team2.TeamName;
+        public string TeamWinnerName => Team1Score > Team2Score ? Team1.TeamName : Team2.TeamName;
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
         public DateTime CreationDate { get; set; }
