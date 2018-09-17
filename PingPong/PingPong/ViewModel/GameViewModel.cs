@@ -11,5 +11,11 @@ namespace PingPong.ViewModel
         public List<TeamGame> TeamGames { get; set; }
 
         public List<SingleGame> SingleGames { get; set; }
+
+        public List<KeyValuePair<string, int>> TeamLeaders { get; set; }
+
+        public List<KeyValuePair<string, int>> SingleLeaders { get; set; }
+
+        public int Rank { get; set; }
     }
 }

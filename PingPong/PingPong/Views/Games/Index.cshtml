@@ -15,6 +15,34 @@
 <p>I am the Games Index</p>
 <p>You got here cuz you created a game.</p>
 
+
+<h3>Leader Board</h3>
+<hr />
+<h4>Team Games</h4>
+<table class="table">
+    <tr>
+        <th>
+            Rank
+        </th>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Games Won
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach (var leader in Model.TeamLeaders)
+    {
+        <tr>
+            <td>@(Model.Rank++)</td>
+            <td>@Html.DisplayFor(modelItem => leader.Key)</td>
+            <td>@Html.DisplayFor(modelItem => leader.Value)</td>
+        </tr>
+    }
+</table>
+
 <hr />
 <h3>Singles Games</h3>
 <table class="table">

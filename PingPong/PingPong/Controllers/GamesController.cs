@@ -20,10 +20,39 @@ namespace PingPong.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            ViewBag.Message = "Single Games!";
-            var games = SingleGame.Get();
+            ViewBag.Message = "Games!";
+            var singleGames = SingleGame.Get();
             var teamGames = TeamGame.Get();
-            var model = new GameViewModel { SingleGames = games, TeamGames = teamGames};
+
+            foreach (var game in singleGames)
+            {
+                game.PlayerWinner = game.GetPlayerWinnerId();
+            }
+
+            foreach (var game in teamGames)
+            {
+                game.TeamWinner = game.GetTeamWinnerName();
+            }
+
+            Dictionary<string, int> winnerCount = new Dictionary<string, int>();
+
+            foreach (var game in teamGames)
+            {
+                if (!winnerCount.ContainsKey(game.TeamWinner))
+                {
+                    winnerCount[game.TeamWinner] = 1;
+                }
+                else
+                {
+                    winnerCount[game.TeamWinner]++;
+                }
+            }
+
+            var winnerCountList = winnerCount.ToList();
+
+            winnerCountList.Sort((y,x) => x.Value.CompareTo(y.Value));
+
+            var model = new GameViewModel { SingleGames = singleGames, TeamGames = teamGames, TeamLeaders = winnerCountList, Rank = 1};
 
             return View(model);
         }
