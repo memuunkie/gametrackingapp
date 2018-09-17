@@ -17,6 +17,7 @@ namespace PingPong.Models
         public Team Team1 { get; set; }
         public Team Team2 { get; set; }
         public string TeamWinner { get; set; }
+        public string GetTeamWinnerName() => Team1Score > Team2Score ? Team1.TeamName : Team2.TeamName;
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
         public DateTime CreationDate { get; set; }
@@ -33,7 +34,8 @@ namespace PingPong.Models
             var games = _conn.Query<TeamGame, Team, Team, TeamGame>(@"SELECT tg.*, t1.*, t2.*
                             FROM TeamGames tg
                             INNER JOIN Teams t1 ON t1.Id = tg.Team1Id
-                            INNER JOIN Teams t2 ON t2.Id = tg.Team2Id;",
+                            INNER JOIN Teams t2 ON t2.Id = tg.Team2Id
+                            ORDER BY tg.CreationDate DESC;",
                             (tg, t1, t2) =>
                             {
                                 // bind the table/class hybrid to the property
@@ -42,26 +44,12 @@ namespace PingPong.Models
                                 return tg;
                             }).ToList();
 
-            for (int i = 0; i < games.Count; i++)
-            {
-                if (games[i].Team1Score > games[i].Team2Score)
-                {
-                    games[i].TeamWinner = games[i].Team1.TeamName;
-                }
-                else
-                {
-                    games[i].TeamWinner = games[i].Team2.TeamName;
-                }
-            }
-
             return games;
 
         }
 
-        public static List<TeamGame> GetGamesByTeamIds()
+        public static List<TeamGame> GetGamesByTeamIds(IEnumerable<int> teamIds)
         {
-            var teamIds = new[] {1, 2, 3};
-
             // pass in ids to find
             // add Classes to "bind" results to
             // <FirstTable-tg, SecondTableJoin-t1, ThirdTableJoin-t2, FinalObjectReturned>
@@ -69,7 +57,8 @@ namespace PingPong.Models
                             FROM TeamGames tg
                             INNER JOIN Teams t1 ON t1.Id = tg.Team1Id
                             INNER JOIN Teams t2 ON t2.Id = tg.Team2Id
-                            WHERE Team1Id IN @teamIds OR Team2Id IN @teamIds;",
+                            WHERE Team1Id IN @teamIds OR Team2Id IN @teamIds
+                            ORDER BY tg.CreationDate DESC;",
                 (tg, t1, t2) =>
                 {
                     // bind the table/class hybrid to the property
@@ -79,13 +68,7 @@ namespace PingPong.Models
                 }, new {teamIds}).ToList();
             // don't forget to pass in the parameter and then List the result
 
-            var testCase = games[0].Team1.TeamName;
-
             return games;
         }
-
-            // teamid in @teamsids
-
-
     }
 }
