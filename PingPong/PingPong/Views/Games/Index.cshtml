@@ -9,7 +9,7 @@
 <h3>@ViewBag.Message</h3>
 
 <p>
-    @Html.ActionLink("Create New Game", "CreateSingle")
+    @Html.ActionLink("Create New Game", "Create")
 </p>
 
 <p>I am the Games Index</p>
@@ -31,10 +31,11 @@
     </tr>
 
 
-    @foreach (var leader in Model.SingleLeaders)
+    @for (var i = 0; i < Model.SingleLeaders.Count; i++)
     {
+        var leader = Model.SingleLeaders[i];
         <tr>
-            <td>@(Model.Rank++)</td>
+            <td>@(i + 1)</td>
             <td>@Html.DisplayFor(modelItem => leader.Key)</td>
             <td>@Html.DisplayFor(modelItem => leader.Value)</td>
         </tr>
@@ -75,7 +76,6 @@
 
 <hr />
 <h4>Team Ranking</h4>
-@(Model.Rank = 1)
 <table class="table">
     <tr>
         <th>
@@ -90,10 +90,11 @@
         <th></th>
     </tr>
 
-    @foreach (var leader in Model.TeamLeaders)
+    @for (var i = 0; i < Model.TeamLeaders.Count; i++)
     {
+        var leader = Model.TeamLeaders[i];
         <tr>
-            <td>@(Model.Rank++)</td>
+            <td>@(i + 1)</td>
             <td>@Html.DisplayFor(modelItem => leader.Key)</td>
             <td>@Html.DisplayFor(modelItem => leader.Value)</td>
         </tr>
