@@ -121,10 +121,10 @@
     @foreach (var game in Model.TeamGames)
     {
         <tr>
-            <td class=@(game.TeamWinner == game.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team1.TeamName)</td>
-            <td class=@(game.TeamWinner == game.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team1Score)</td>
-            <td class=@(game.TeamWinner == game.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team2.TeamName)</td>
-            <td class=@(game.TeamWinner == game.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team1Score)</td>
+            <td class=@(game.TeamWinnerName == game.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team1.TeamName)</td>
+            <td class=@(game.TeamWinnerName == game.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team1Score)</td>
+            <td class=@(game.TeamWinnerName == game.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team2.TeamName)</td>
+            <td class=@(game.TeamWinnerName == game.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Team1Score)</td>
 
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = game.Id }) |
