@@ -15,28 +15,34 @@ namespace PingPong.Controllers
         // creates connection to database
         public ActionResult Index()
         {
-            return View();
+            // this is debugging code to test TeamGame methods, not used on Index
+            var teams = TeamGame.Get();
+            return View(teams);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            //var games = TeamGame.GetGamesByTeamIds();
+            ViewBag.Message = "Single Games!";
+            var games = SingleGame.Get();
+            var teamGames = TeamGame.Get();
+            var model = new GameViewModel { SingleGames = games, TeamGames = teamGames };
 
-            var gameWinners = TeamGame.Get();
-
-            var singleGames = SingleGame.GetGamesByPlayerId(1);
-
-
-
-            return View();
+            return View(model);
         }
 
         public ActionResult Players()
         {
+            // redirecting to the Index on PlayerController
             return RedirectToAction("Index", "Players");
 
+        }
+
+        public ActionResult Games()
+        {
+            // redirecting to the Index on GamesController
+            return RedirectToAction("Index", "Games");
         }
     }
 }
