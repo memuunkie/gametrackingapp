@@ -17,11 +17,8 @@ namespace PingPong.Models
         public Player Player2 { get; set; }
         public int Player1Score { get; set; }
         public int Player2Score { get; set; }
-        public string PlayerWinner { get; set; }
-
-        public string GetPlayerWinner() => Player1Score > Player2Score ? 
-                                           Player1.FirstName 
-                                           : Player2.FirstName;
+        public string PlayerWinner => Player1Score > Player2Score ?
+                                    Player1.FirstName : Player2.FirstName;
         // set PlayerWinner
         public List<Player> Players { get; set; }
         public DateTime CreationDate { get; set; }
