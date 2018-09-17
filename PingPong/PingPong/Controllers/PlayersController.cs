@@ -22,7 +22,9 @@ namespace PingPong.Controllers
         {
             ViewBag.Message = "Players!";
             var players = Player.Get();
-            var model = new PlayerViewModel { Players = players };
+            var model = new PlayerViewModel { Players = players};
+
+            var teamName = Player.GetTeams(1);
 
             return View(model);
         }
@@ -41,8 +43,19 @@ namespace PingPong.Controllers
 
             using (_conn)
             {
-
                 player = _conn.QuerySingle<Player>(sql);
+            }
+
+            player.Teams = Player.GetTeams(player.Id);
+            player.SingleGames = SingleGame.GetGamesByPlayerId(player.Id);
+
+            var playerTeamIds = player.Teams.Select(x => x.Id);
+
+            player.TeamGames = TeamGame.GetGamesByTeamIds(playerTeamIds);
+
+            foreach (var game in player.TeamGames)
+            {
+                game.TeamWinner = game.GetTeamWinnerName();
             }
 
             return View(player);
