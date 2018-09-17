@@ -17,7 +17,9 @@ namespace PingPong.Models
         public int Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        public string TeamName { get; set; }
+        public List<Team> Teams { get; set; }
+        public List<SingleGame> SingleGames { get; set; }
+        public List<TeamGame> TeamGames { get; set; }
         public DateTime CreationDate { get; set; }
 
         // set the CreationDate to now
@@ -31,11 +33,12 @@ namespace PingPong.Models
             return _conn.Query<Player>("SELECT * FROM Players").ToList();
         }
 
-        //public static List<Team>
+        public static List<Team> GetTeams(int playerId)
+        {
+            var teamNames = _conn.Query<Team>(@"SELECT * FROM Teams 
+                                             WHERE Player1Id=@playerId OR Player2Id=@playerId", new { playerId }).ToList();
 
-
-
-        // On player class
-        // query on all teams player is on       
+            return teamNames;
+        }
     }
 }
