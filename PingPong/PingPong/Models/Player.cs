@@ -25,7 +25,7 @@ namespace PingPong.Models
         // set the CreationDate to now
         public Player()
         {
-            this.CreationDate = DateTime.Now;
+            CreationDate = DateTime.Now;
         }
 
         public static List<Player> Get()

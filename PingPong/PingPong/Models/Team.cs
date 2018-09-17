@@ -22,7 +22,7 @@ namespace PingPong.Models
         // set the CreationDate to now
         public Team()
         {
-            this.CreationDate = DateTime.Now;
+            CreationDate = DateTime.Now;
         }
 
         public static List<Team> Get()
