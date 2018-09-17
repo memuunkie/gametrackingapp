@@ -39,7 +39,8 @@ namespace PingPong.Controllers
 
             string sql = "SELECT * FROM Players WHERE Id='" + id + "'";
 
-            var player = new Player();
+            Player player;
+            // ^ strongly typed vs wimpy var player = new Player();
 
             using (_conn)
             {
