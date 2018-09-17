@@ -45,6 +45,30 @@
 
 <hr />
 <h3>Singles Games</h3>
+
+<table class="table">
+    <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Games Won</th>
+        <th></th>
+        <th></th>
+    </tr>
+    
+    @(Model.Rank = 1)
+    @foreach (var leader in Model.SingleLeaders)
+    {
+        <tr>
+            <td>@(Model.Rank++)</td>
+            <td>@Html.DisplayFor(modelItem => leader.Key)</td>
+            <td>@Html.DisplayFor(modelItem => leader.Value)</td>
+        </tr>
+    }
+
+</table>
+
+
+
 <table class="table">
     <tr>
         <th>
@@ -60,8 +84,8 @@
     @foreach (var game in Model.SingleGames)
     {
         <tr>
-            <td name="sg-player1" class=@(game.PlayerWinner == game.Player1Id ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player1Score)</td>
-            <td name="sg-player2" class=@(game.PlayerWinner == game.Player2Id ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player2Score)</td>
+            <td name="sg-player1" class=@(game.PlayerWinner == game.Player1.FirstName + " " + game.Player1.LastName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player1Score)</td>
+            <td name="sg-player2" class=@(game.PlayerWinner == game.Player2.FirstName + " " + game.Player2.LastName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player2Score)</td>
             <td></td>
             <td></td>
             <td>
