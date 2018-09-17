@@ -1,13 +1,13 @@
 INSERT INTO Players VALUES ('Alcaide', 'Myrna', GETDATE());
 INSERT INTO Players VALUES ('Pool', 'Dead', GETDATE());
 INSERT INTO Players VALUES ('Rogers', 'Steve', GETDATE());
-INSERT INTO Players VALUES ('Parker', 'Peter', GETDATE());
+INSERT INTO Players VALUES ('Romanova', 'Natasha', GETDATE());
 INSERT INTO Players VALUES ('Quill', 'Peter', GETDATE());
 INSERT INTO Players VALUES ('Destroyer', 'Drax', GETDATE());
 
-INSERT INTO Teams VALUES ('XForce', 1, 2, GETDATE());
-INSERT INTO Teams VALUES ('Avengers', 3, 4, GETDATE());
-INSERT INTO Teams VALUES ('Guardians', 5, 6, GETDATE());
+INSERT INTO Teams VALUES (1, 2, 'XForce', GETDATE());
+INSERT INTO Teams VALUES (3, 4, 'Avengers', GETDATE());
+INSERT INTO Teams VALUES (5, 6, 'Guardians', GETDATE());
 
 INSERT INTO SingleGames VALUES (1, 2, 5, 3, GETDATE());
 INSERT INTO SingleGames VALUES (2, 3, 4, 6, GETDATE());
@@ -48,7 +48,9 @@ SELECT * FROM SingleGames;
 
 SELECT * FROM TeamGames;
 
+/*
 DROP TABLE SingleGames;
 DROP TABLE TeamGames;
 DROP TABLE Teams;
 DROP TABLE Players;
+*/
