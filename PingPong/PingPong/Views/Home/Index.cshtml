@@ -20,12 +20,16 @@
         <p>
             Remember: rip it, roll it, and punch it!
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">How to create a game &raquo;</a></p>
+        <p>
+            @Html.ActionLink("Create New Game", "Create", "Games")
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Make a team</h2>
         <p>
-            Don't play alone! 
+            It's dangerous to go alone! 
+        </p>
+        <p>
             Add players or create teams so you can challenge each other and establish dominance.
         </p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">How to add teams &raquo;</a></p>
@@ -34,8 +38,12 @@
         <h2>Leaderboard</h2>
         <p>
             Which team reigns supreme? 
+        </p>
+        <p>
             Find out who you need to defeat to get the top spot.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <p>
+            @Html.ActionLink("See Games", "Index", "Games")
+        </p>
     </div>
 </div>
