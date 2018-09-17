@@ -24,20 +24,31 @@ namespace PingPong.Controllers
             var singleGames = SingleGame.Get();
             var teamGames = TeamGame.Get();
 
+            Dictionary<string, int> winnerSinglesCount = new Dictionary<string, int>();
+
             foreach (var game in singleGames)
             {
-                game.PlayerWinner = game.GetPlayerWinnerId();
+                game.PlayerWinner = game.GetPlayerWinner();
+
+                if (!winnerSinglesCount.ContainsKey(game.PlayerWinner))
+                {
+                    winnerSinglesCount[game.PlayerWinner] = 1;
+                }
+                else
+                {
+                    winnerSinglesCount[game.PlayerWinner]++;
+                }
             }
 
-            foreach (var game in teamGames)
-            {
-                game.TeamWinner = game.GetTeamWinnerName();
-            }
+            var winnerSinglesCountList = winnerSinglesCount.ToList();
+            winnerSinglesCountList.Sort((y, x) => x.Value.CompareTo(y.Value));
 
             Dictionary<string, int> winnerCount = new Dictionary<string, int>();
 
             foreach (var game in teamGames)
             {
+                game.TeamWinner = game.GetTeamWinnerName();
+
                 if (!winnerCount.ContainsKey(game.TeamWinner))
                 {
                     winnerCount[game.TeamWinner] = 1;
@@ -49,10 +60,13 @@ namespace PingPong.Controllers
             }
 
             var winnerCountList = winnerCount.ToList();
-
             winnerCountList.Sort((y,x) => x.Value.CompareTo(y.Value));
 
-            var model = new GameViewModel { SingleGames = singleGames, TeamGames = teamGames, TeamLeaders = winnerCountList, Rank = 1};
+            var model = new GameViewModel { SingleGames = singleGames,
+                                            TeamGames = teamGames,
+                                            TeamLeaders = winnerCountList,
+                                            SingleLeaders = winnerSinglesCountList,
+                                            Rank = 1};
 
             return View(model);
         }
