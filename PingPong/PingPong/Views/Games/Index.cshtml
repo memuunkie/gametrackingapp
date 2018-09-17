@@ -9,7 +9,7 @@
 <h3>@ViewBag.Message</h3>
 
 <p>
-    @Html.ActionLink("Create New Game", "Create")
+    @Html.ActionLink("Create New Game", "CreateSingle")
 </p>
 
 <p>I am the Games Index</p>
@@ -18,32 +18,7 @@
 
 <h3>Leader Board</h3>
 <hr />
-<h4>Team Games</h4>
-<table class="table">
-    <tr>
-        <th>
-            Rank
-        </th>
-        <th>
-            Team Name
-        </th>
-        <th>
-            Games Won
-        </th>
-        <th></th>
-    </tr>
-    
-    @foreach (var leader in Model.TeamLeaders)
-    {
-        <tr>
-            <td>@(Model.Rank++)</td>
-            <td>@Html.DisplayFor(modelItem => leader.Key)</td>
-            <td>@Html.DisplayFor(modelItem => leader.Value)</td>
-        </tr>
-    }
-</table>
 
-<hr />
 <h3>Singles Games</h3>
 
 <table class="table">
@@ -54,8 +29,8 @@
         <th></th>
         <th></th>
     </tr>
-    
-    @(Model.Rank = 1)
+
+
     @foreach (var leader in Model.SingleLeaders)
     {
         <tr>
@@ -84,8 +59,8 @@
     @foreach (var game in Model.SingleGames)
     {
         <tr>
-            <td name="sg-player1" class=@(game.PlayerWinner == game.Player1.FirstName + " " + game.Player1.LastName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player1Score)</td>
-            <td name="sg-player2" class=@(game.PlayerWinner == game.Player2.FirstName + " " + game.Player2.LastName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player2Score)</td>
+            <td name="sg-player1" class=@(game.PlayerWinner == game.Player1.FirstName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player1Score)</td>
+            <td name="sg-player2" class=@(game.PlayerWinner == game.Player2.FirstName ? "bg-success" : "")>@Html.DisplayFor(modelItem => game.Player2Score)</td>
             <td></td>
             <td></td>
             <td>
@@ -99,6 +74,31 @@
 </table>
 
 <hr />
+<h4>Team Ranking</h4>
+@(Model.Rank = 1)
+<table class="table">
+    <tr>
+        <th>
+            Rank
+        </th>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Games Won
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var leader in Model.TeamLeaders)
+    {
+        <tr>
+            <td>@(Model.Rank++)</td>
+            <td>@Html.DisplayFor(modelItem => leader.Key)</td>
+            <td>@Html.DisplayFor(modelItem => leader.Value)</td>
+        </tr>
+    }
+</table>
 <h3>Team Games</h3>
 <table class="table">
     <tr>
