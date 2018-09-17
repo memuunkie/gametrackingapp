@@ -47,15 +47,13 @@ namespace PingPong.Controllers
 
             foreach (var game in teamGames)
             {
-                game.TeamWinner = game.GetTeamWinnerName();
-
-                if (!winnerCount.ContainsKey(game.TeamWinner))
+                if (!winnerCount.ContainsKey(game.TeamWinnerName))
                 {
-                    winnerCount[game.TeamWinner] = 1;
+                    winnerCount[game.TeamWinnerName] = 1;
                 }
                 else
                 {
-                    winnerCount[game.TeamWinner]++;
+                    winnerCount[game.TeamWinnerName]++;
                 }
             }
 

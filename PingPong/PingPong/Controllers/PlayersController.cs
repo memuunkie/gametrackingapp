@@ -59,11 +59,6 @@ namespace PingPong.Controllers
 
             player.TeamGames = TeamGame.GetGamesByTeamIds(playerTeamIds);
 
-            foreach (var game in player.TeamGames)
-            {
-                game.TeamWinner = game.GetTeamWinnerName();
-            }
-
             return View(player);
 
         }
