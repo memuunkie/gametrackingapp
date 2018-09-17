@@ -50,11 +50,6 @@ namespace PingPong.Controllers
             player.Teams = Player.GetTeams(player.Id);
             player.SingleGames = SingleGame.GetGamesByPlayerId(player.Id);
 
-            foreach (var game in player.SingleGames)
-            {
-                game.PlayerWinner = game.GetPlayerWinner();
-            }
-
             var playerTeamIds = player.Teams.Select(x => x.Id);
 
             player.TeamGames = TeamGame.GetGamesByTeamIds(playerTeamIds);

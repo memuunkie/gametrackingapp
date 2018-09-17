@@ -28,8 +28,6 @@ namespace PingPong.Controllers
 
             foreach (var game in singleGames)
             {
-                game.PlayerWinner = game.GetPlayerWinner();
-
                 if (!winnerSinglesCount.ContainsKey(game.PlayerWinner))
                 {
                     winnerSinglesCount[game.PlayerWinner] = 1;
