@@ -20,15 +20,17 @@ namespace PingPong.Models
         public string PlayerWinner { get; set; }
 
         public string GetPlayerWinner() => Player1Score > Player2Score ? 
-                                           Player1.FirstName + " " + Player1.LastName 
-                                           : Player2.FirstName + " " + Player2.LastName;
+                                           Player1.FirstName 
+                                           : Player2.FirstName;
         // set PlayerWinner
+        public List<Player> Players { get; set; }
         public DateTime CreationDate { get; set; }
 
         // set the CreationDate to now
         public SingleGame()
         {
             this.CreationDate = DateTime.Now;
+            this.Players = Player.Get();
         }
 
         public static List<SingleGame> Get()
@@ -57,7 +59,7 @@ namespace PingPong.Models
                                                 INNER JOIN Players p1 on p1.Id = sg.Player1Id
                                                 INNER JOIN Players p2 on p2.Id = sg.Player2Id
                                                 WHERE Player1Id=@playerId OR Player2Id=@playerId
-                                                ORDER BY CreationDate DESC", 
+                                                ORDER BY sg.CreationDate DESC", 
                                                 (sg, p1, p2) =>
                                                 {
                                                     // bind the table/class hybrid to the property

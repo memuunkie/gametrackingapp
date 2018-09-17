@@ -80,7 +80,8 @@ namespace PingPong.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
-            return View();
+            var game = new SingleGame();
+            return View(game);
         }
 
         // POST: Games/Create
@@ -88,13 +89,11 @@ namespace PingPong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Player1Id,Player2Id,Player1Score,Player2Score")] SingleGame singleGame)
         {
-
             using (_conn)
             {
                 _conn.Execute(@"INSERT INTO SingleGames (Player1Id,Player2Id,Player1Score,Player2Score,CreationDate) 
                                 VALUES (@Player1Id, @Player2Id, @Player1Score, @Player2Score, @CreationDate);", singleGame);
             }
-
             return RedirectToAction("Index", "Games");
         }
 

@@ -17,28 +17,51 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <input type="radio" name="game" value="single" checked> Singles Game
-            <input type="radio" name="game" value="team"> Team Game
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Player1Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Game Select", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Player1Id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Player1Id, "", new { @class = "text-danger" })
+                <input type="radio" name="game" value="single" checked> Singles Game
+                <input type="radio" name="game" value="team"> Team Game
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Player 1 Select", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(modelItem => Model.Player1.Id,
+                    new SelectList(Model.Players, "Id", "FirstName"),
+                    "Select Player",
+                    new { htmlAttributes = new { @class = "form-control"}})
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Player2Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Player1.Id, "Player 1 Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Player2Id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Player2Id, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Player1.Id, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Player1.Id, "", new {@class = "text-danger"})
+            </div>
+        </div>*@
+        
+        <div class="form-group">
+            @Html.Label("Player 2 Select", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(modelItem => Model.Player2.Id,
+                    new SelectList(Model.Players, "Id", "FirstName"),
+                    "Select Player",
+                    new { htmlAttributes = new { @class = "form-control"}})
             </div>
         </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Player2.Id, "Player 2 Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Player2.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Player2.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Player1Score, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Player1Score, "Player 1 Score", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Player1Score, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Player1Score, "", new { @class = "text-danger" })
@@ -46,7 +69,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Player2Score, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Player2Score, "Player 2 Score", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Player2Score, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Player2Score, "", new { @class = "text-danger" })
