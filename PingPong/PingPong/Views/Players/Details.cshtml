@@ -76,11 +76,11 @@
     @foreach (var teamGame in Model.TeamGames)
     {
         <tr>
-            <td class=@(teamGame.TeamWinner == teamGame.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team1.TeamName)</td>
-            <td class=@(teamGame.TeamWinner == teamGame.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team1Score)</td>
-            <td class=@(teamGame.TeamWinner == teamGame.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team2.TeamName)</td>
-            <td class=@(teamGame.TeamWinner == teamGame.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team1Score)</td>
-            <td>@Html.DisplayFor(modelItem => teamGame.TeamWinner)</td>
+            <td class=@(teamGame.TeamWinnerName == teamGame.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team1.TeamName)</td>
+            <td class=@(teamGame.TeamWinnerName == teamGame.Team1.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team1Score)</td>
+            <td class=@(teamGame.TeamWinnerName == teamGame.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team2.TeamName)</td>
+            <td class=@(teamGame.TeamWinnerName == teamGame.Team2.TeamName ? "bg-success" : "")>@Html.DisplayFor(modelItem => teamGame.Team1Score)</td>
+            <td>@Html.DisplayFor(modelItem => teamGame.TeamWinnerName)</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = teamGame.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = teamGame.Id }) |
