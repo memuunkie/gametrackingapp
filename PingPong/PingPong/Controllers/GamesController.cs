@@ -65,8 +65,7 @@ namespace PingPong.Controllers
             var model = new GameViewModel { SingleGames = singleGames,
                                             TeamGames = teamGames,
                                             TeamLeaders = winnerCountList,
-                                            SingleLeaders = winnerSinglesCountList,
-                                            Rank = 1};
+                                            SingleLeaders = winnerSinglesCountList,};
 
             return View(model);
         }

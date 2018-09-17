@@ -15,7 +15,5 @@ namespace PingPong.ViewModel
         public List<KeyValuePair<string, int>> TeamLeaders { get; set; }
 
         public List<KeyValuePair<string, int>> SingleLeaders { get; set; }
-
-        public int Rank { get; set; }
     }
 }
